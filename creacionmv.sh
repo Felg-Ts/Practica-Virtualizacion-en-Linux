@@ -111,7 +111,7 @@ else
 fi
 
 #Instalacion apache2 y copia de index
-if [[ `ssh -oStrictHostKeyChecking=no -i id_rsa -t debian@$ip "ls /etc | egrep -Eo 'apache2'"` != 'apache2' ]]; then
+if [[ `ssh -oStrictHostKeyChecking=no -i id_rsa -t debian@$ip "ls /etc | egrep -Eo 'apache2'"` == 'apache2' ]]; then
     echo "apache2 está instalado en maquina1"
 
 else

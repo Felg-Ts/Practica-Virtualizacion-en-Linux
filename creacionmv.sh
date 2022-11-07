@@ -94,7 +94,7 @@ ip=$(virsh -c qemu:///system domifaddr maquina1 | grep -Eo '[0-9]{1,3}\.[0-9]{1,
 
 
 #Creacion y montaje de directorio html
-if [[ `ssh -oStrictHostKeyChecking=no -i id_rsa -t debian@$ip "sudo ls /var/www/html"` ]]; then
+if [[ `ssh -oStrictHostKeyChecking=no -i id_rsa -t debian@$ip "sudo ls /var/www/ | grep -Eo 'html'"` == 'html' ]]; then
     echo "El directorio html ya existe en maquina1"
 
 else

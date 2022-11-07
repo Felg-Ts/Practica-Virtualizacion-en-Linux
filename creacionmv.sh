@@ -118,9 +118,9 @@ else
     if
         echo "Instalando apache2"
         ssh -oStrictHostKeyChecking=no -i id_rsa -t debian@$ip "sudo apt install apache2 -y" >> /dev/null
+        scp -i id_rsa index.html debian@$ip:/home/debian >> /dev/null
         ssh -oStrictHostKeyChecking=no -i id_rsa -t debian@$ip "sudo mv /home/debian/index.html /var/www/html" >> /dev/null
     then
-        scp -i id_rsa index.html debian@$ip:/home/debian >> /dev/null
         echo "Apache a sido instalado"
     else
         echo "Error durante la instalación de apache"
@@ -204,8 +204,8 @@ else
         virsh -c qemu:///system snapshot-create-as maquina1 --name snapshot1 --description "Primera snapshot" --atomic >> /dev/null
     then
         virsh start maquina1 >> /dev/null
-        #sleep 20
-        #ssh -oStrictHostKeyChecking=no -i id_rsa -t debian@$ip "sudo mount /dev/vdb /var/www/html" 
+        sleep 20
+        ssh -oStrictHostKeyChecking=no -i id_rsa -t debian@$ip "sudo mount /dev/vdb /var/www/html" >> /dev/null
         echo "snapshot1 creada"
         virsh -c qemu:///system attach-disk maquina1 /var/lib/libvirt/images/vol1.raw vdb --driver=qemu --type disk --subdriver raw --persistent >> /dev/null
     else

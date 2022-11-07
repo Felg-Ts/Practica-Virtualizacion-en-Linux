@@ -205,7 +205,7 @@ else
     then
         virsh start maquina1 >> /dev/null
         sleep 20
-        ssh -oStrictHostKeyChecking=no -i id_rsa -t debian@$ip "sudo mount /dev/vdb /var/www/html" >> /dev/null
+        #ssh -oStrictHostKeyChecking=no -i id_rsa -t debian@$ip "sudo mount /dev/vdb /var/www/html" >> /dev/null
         echo "snapshot1 creada"
         virsh -c qemu:///system attach-disk maquina1 /var/lib/libvirt/images/vol1.raw vdb --driver=qemu --type disk --subdriver raw --persistent >> /dev/null
     else
